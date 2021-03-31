@@ -247,13 +247,13 @@ class WDS_Active_Plugin_Data {
 			<?php 		$this->get_clear_transients_link(); ?>
 
 			<tr>
-				<td><strong><?php _e( 'Plugin Name / Site ID', 'wds-apd' ); ?></strong></td>
+				<th><strong><?php _e( 'Plugin Name / Site ID', 'wds-apd' ); ?></strong></th>
 				<?php
 					foreach( $sites as $site ) {
-						echo '<td title="' . esc_attr( $site->domain ) . '"><a href="'.get_admin_url( $site->blog_id ).'plugins.php">' . $site->blog_id . '</a></td>';
+						echo '<th title="' . esc_attr( $site->domain ) . '"><a href="'.get_admin_url( $site->blog_id ).'plugins.php">' . $site->blog_id . '</a></th>';
 					}
 				?>
-			</tr>
+			</th>
 
 			<?php
 				$index = 0;
@@ -266,15 +266,15 @@ class WDS_Active_Plugin_Data {
 
 						if ( in_array( $plugin_file, (array) $plugins ) ) {
 
-							$span = '<span class="dashicons dashicons-yes wds-green"></span>';
+							$span = '<span class="dashicons dashicons-yes wds-active"></span>';
 
 						} elseif ( is_plugin_active_for_network( $plugin_file ) ) {
 
-							$span = '<span class="dashicons dashicons-yes wds-lt-green"></span>';
+							$span = '<span class="dashicons dashicons-yes wds-network-active"></span>';
 
 						} else {
 
-							$span = '<span class="dashicons dashicons-no-alt wds-red"></span>';
+							$span = '<span class="dashicons dashicons-no-alt wds-inactive"></span>';
 
 						}
 
@@ -344,12 +344,13 @@ class WDS_Active_Plugin_Data {
 	 */
 	public function styles() { ?>
 		<style>
-		.wds-display-none { display: none; }
-		#wds-simple textarea { width: 500px; height: 500px; }
-		.wds-green { background-color: #008000; color: #fff; }
-		.wds-red { background-color: red; color: #fff; }
-		.wds-lt-green { background-color: rgba( 0,128,0,.25); color: #fff; }
-		#wds-sites-list tr td { padding: 5px; }
+      th:first-of-type { text-align: left; }
+      .wds-display-none { display: none; }
+      #wds-simple textarea { width: 500px; height: 500px; }
+      .wds-active { background-color: #008040; color: #fff; }
+      .wds-inactive { background-color: #d3d3d3; color: #fff; }
+      .wds-network-active { background-color: #0040c0; color: #fff; }
+      #wds-sites-list tr td { padding: 5px; }
 		</style>
 	<?php
 	}
